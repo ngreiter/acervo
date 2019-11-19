@@ -1,6 +1,5 @@
 package com.prog3.acervo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,22 +34,19 @@ public class ObrasController {
 
 	@GetMapping("/obras")
 	public ResponseEntity<List<Obra>> getAll() {
-		Iterable<Obra> obras = obrasRepository.findAll();
-		List<Obra> returnList = new ArrayList<>();
-		obras.forEach(obra -> returnList.add(obra));
+		List<Obra> returnList = obrasService.getAllObras();
 		return ResponseEntity.ok(returnList);
 	}
 
 	@PostMapping("/obras")
-	public ResponseEntity<Obra> addObra(@RequestBody Obra obra) {
+	public ResponseEntity<Obra> add(@RequestBody Obra obra) {
 		obrasRepository.save(obra);
 		return ResponseEntity.ok(obra);
 	}
 
 	@PutMapping("/obras/{id}")
-	public ResponseEntity<Obra> updateGuest(@RequestBody Obra obra, @PathVariable long id) {
-		Obra obraBD = obrasRepository.findById(id).get();
-		obra = obrasService.replaceWhereNull(obra, obraBD);
+	public ResponseEntity<Obra> update(@RequestBody Obra obra, @PathVariable long id) {
+		obra = obrasService.replaceWhereNull(obra, obrasRepository.findById(id).get());
 		obrasRepository.save(obra);
 		return ResponseEntity.ok(obra);
 	}
@@ -61,10 +57,9 @@ public class ObrasController {
 		return ResponseEntity.ok("obra removida");
 	}
 
-	// TODO
 	@DeleteMapping("/obras")
 	public ResponseEntity<String> delete(@RequestBody String titulo) {
-		//obrasRepository.deleteByTitulo(titulo);
+		obrasService.deleteByTitulo(titulo);
 		return ResponseEntity.ok("obra(s) removida(s)");
 	}
 
