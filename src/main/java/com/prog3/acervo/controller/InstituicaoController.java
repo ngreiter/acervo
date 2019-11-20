@@ -27,7 +27,7 @@ public class InstituicaoController {
 	private InstituicaoService instituicaoService;
 
 	@GetMapping("/instituicao/{id}")
-	public ResponseEntity<Instituicao> getObra(long id) {
+	public ResponseEntity<Instituicao> getOne(long id) {
 		Optional<Instituicao> instituicao = instituicaoRepository.findById(id);
 		return ResponseEntity.ok(instituicao.get());
 	}
@@ -54,7 +54,7 @@ public class InstituicaoController {
 	@DeleteMapping("/instituicao/{id}")
 	public ResponseEntity<String> deletePorId(long id) {
 		instituicaoRepository.deleteById(id);
-		return ResponseEntity.ok("obra removida");
+		return ResponseEntity.ok("instituição removida");
 	}
 
 }
