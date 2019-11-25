@@ -4,16 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 
 @Entity
+@Table(name = "tb_obra")
 public class Obra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@NotNull
 	private String autor;
+	@NotNull
 	private String titulo;
+	@Size(min = 4, max = 4)
 	private String ano;
 	private String edicao;
 	private String local;

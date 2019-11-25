@@ -39,7 +39,8 @@ public class InstituicaoController {
 
 	@PostMapping("/instituicao")
 	public ResponseEntity<Instituicao> add(@RequestBody Instituicao instituicao) {
-		return ResponseEntity.ok(instituicaoRepository.save(instituicao));
+		Instituicao novo = instituicaoRepository.save(instituicao);
+		return ResponseEntity.ok(novo);
 	}
 
 	@PutMapping("/instituicao/{id}")
