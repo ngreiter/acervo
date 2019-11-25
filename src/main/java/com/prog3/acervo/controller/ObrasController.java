@@ -27,7 +27,7 @@ public class ObrasController {
 	private ObrasService obrasService;
 
 	@GetMapping("/obras/{id}")
-	public ResponseEntity<Obra> getObra(long id) {
+	public ResponseEntity<Obra> getObra(@PathVariable long id) {
 		Optional<Obra> obra = obrasRepository.findById(id);
 		return ResponseEntity.ok(obra.get());
 	}
@@ -52,7 +52,7 @@ public class ObrasController {
 	}
 
 	@DeleteMapping("/obras/{id}")
-	public ResponseEntity<String> deletePorId(long id) {
+	public ResponseEntity<String> deletePorId(@PathVariable long id) {
 		obrasRepository.deleteById(id);
 		return ResponseEntity.ok("obra removida");
 	}

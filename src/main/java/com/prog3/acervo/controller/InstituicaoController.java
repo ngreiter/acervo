@@ -34,21 +34,18 @@ public class InstituicaoController {
 
 	@GetMapping("/instituicao")
 	public ResponseEntity<List<Instituicao>> getAll() {
-		List<Instituicao> returnList = instituicaoService.getAllInstituicao();
-		return ResponseEntity.ok(returnList);
+		return ResponseEntity.ok(instituicaoService.getAllInstituicao());
 	}
 
 	@PostMapping("/instituicao")
 	public ResponseEntity<Instituicao> add(@RequestBody Instituicao instituicao) {
-		instituicaoRepository.save(instituicao);
-		return ResponseEntity.ok(instituicao);
+		return ResponseEntity.ok(instituicaoRepository.save(instituicao));
 	}
 
 	@PutMapping("/instituicao/{id}")
 	public ResponseEntity<Instituicao> update(@RequestBody Instituicao instituicao, @PathVariable long id) {
 		instituicao = instituicaoService.replaceWhereNull(instituicao, instituicaoRepository.findById(id).get());
-		instituicaoRepository.save(instituicao);
-		return ResponseEntity.ok(instituicao);
+		return ResponseEntity.ok(instituicaoRepository.save(instituicao));
 	}
 
 	@DeleteMapping("/instituicao/{id}")
