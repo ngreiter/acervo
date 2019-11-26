@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "tb_obra")
+@Table(name = "obras")
 public class Obra {
 
 	@Id
